@@ -10,6 +10,11 @@ import {
 } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { add } from '../redux/cartSlice';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const ColorBox = styled(Box)({
   width: '30px',
@@ -19,29 +24,50 @@ const ColorBox = styled(Box)({
 });
 const Product = () => {
   const [sizeselect, setSizeselect] = React.useState('');
+
   const sizeChange = (event) => {
     setSizeselect(event.target.value);
   };
+  const ProductsData = useSelector((item) => item.products);
+  const pId = useParams();
+  const singledata = ProductsData.filter((item) => {
+    return item.id == pId.id;
+  });
+  const [singleProduct] = singledata;
+  const [count, setCount] = useState(1);
+
+  const dispatch = useDispatch();
+  const handleCart = (singleProduct) => {
+    dispatch(add(singleProduct));
+    setCount(count + 1);
+  };
+
   return (
-    <Box sx={{ display: 'flex', m: '25px 10px' }}>
-      <Box sx={{ desplay: 'flex', flex: 1, width: '100%' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        pt: '20px',
+        mt: '2rem',
+        height: '100%',
+      }}
+    >
+      <Box sx={{ desplay: 'flex', width: { md: '50%', xs: '98%' } }}>
         <img
           style={{ width: '100%', height: '80vh', objectFit: 'cover' }}
           alt='img'
-          src='https://images.pexels.com/photos/1038000/pexels-photo-1038000.jpeg?auto=compress&cs=tinysrgb&w=600'
+          src={singleProduct.img}
         />
       </Box>
-      <Box sx={{ flex: 1 }}>
+      <Box sx={{ width: { md: '50%', sm: '100%' } }}>
         <Typography variant='h5' p={2}>
-          Decent Product
+          {singleProduct.name}
         </Typography>
         <Typography variant='body2' p={2}>
-          dolor sit amet consectetur adipisicing elit. Cum vero, natus minus
-          dolore aut rem esse ea ducimus explicabo totam architecto reiciendis
-          debitis eveniet dicta quaerat, blanditiis optio voluptas quia.
+          {singleProduct.desc}
         </Typography>
         <Typography p={2} sx={{ fontSize: '40px', fontWeight: '0px' }}>
-          $ 20
+          {`$ ${singleProduct.price}`}
         </Typography>
         <Box sx={{ display: 'flex' }}>
           <Box sx={{ display: 'flex', flex: 1, ml: 2 }}>
@@ -111,6 +137,7 @@ const Product = () => {
                 width: '30px',
                 height: '30px',
               }}
+              onClick={handleCart}
             />
             <Typography
               sx={{
@@ -124,7 +151,7 @@ const Product = () => {
                 alignItems: 'center',
               }}
             >
-              1
+              {count}
             </Typography>
             <Remove
               sx={{
@@ -144,6 +171,7 @@ const Product = () => {
                 border: '2px solid gray',
                 '&:hover': { color: 'black', bgcolor: 'white' },
               }}
+              onClick={() => handleCart(singleProduct)}
             >
               Add To Cart
             </Button>

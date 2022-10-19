@@ -5,6 +5,7 @@ import {
   Mail,
   Phone,
   Room,
+  Rowing,
   Twitter,
 } from '@mui/icons-material';
 import {
@@ -19,9 +20,19 @@ import React from 'react';
 const Footer = () => {
   return (
     <>
-      <Box sx={{ display: 'flex', width: '100%', m: '10px 5px' }}>
+    <hr
+          style={{
+            height: '1px',
+            color: 'black',
+            marginTop: '30px',
+            marginBottom:"10px",
+            backgroundColor: 'gray',
+          }}
+        />
+      <Box sx={{  width: '100%',display:"flex", m: '10px 5px',alignItems:"center",justifyContent:"center"}}>
+      <Box sx={{width:{lg:"80%",md:"100%"},display:"flex",flexWrap:"wrap" ,justifyContent:"center",}} >
         <Box
-          sx={{ display: 'flex', flexDirection: 'column', flex: 1, p: '20px' }}
+          sx={{ display: 'flex', flexDirection: 'column',width:{sm:"45%",xs:"100%",md:"32%"}, p: '20px' }}
         >
           <Box
             sx={{
@@ -55,7 +66,7 @@ const Footer = () => {
             </Box>
           </Box>
         </Box>
-        <Box sx={{ flex: 1, p: '20px' }}>
+        <Box sx={{ width:{md:"32%",xs:"100%",sm:"45%"}, p: '20px' }}>
           <Typography pb={1} variant='h5' pr={1}>
             Useful Links
           </Typography>
@@ -103,7 +114,7 @@ const Footer = () => {
           </Box>
         </Box>
         <Box
-          sx={{ display: 'flex', flexDirection: 'column', flex: 1, p: '20px' }}
+          sx={{ display: 'flex', flexDirection: 'column', width:{sm:"45%",xs:"100%",md:"32%"}, p: '20px' }}
         >
           <Typography pb={1} variant='h5' pr={1}>
             Contact
@@ -120,6 +131,7 @@ const Footer = () => {
             <Mail sx={{ mr: '10px' }} />
             <ListItemText primary={'iafridi640@gmail.com'} />
           </ListItem>
+        </Box>
         </Box>
       </Box>
     </>

@@ -1,0 +1,90 @@
+.bgcolor{
+    /* background-color: #F9F9F9; */
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.productCard{
+width:24%;
+display:flex;
+}
+
+
+@media(max-width: 600px) {
+  .productCard{
+  width:100%;
+  }
+  .smcatcard{
+    width:100%;
+  }
+}
+@media(min-width: 600px) {
+  .productCard{
+  width:49%;
+  }
+  .smcatcard{
+    width:49%;
+  }
+}
+@media(min-width: 1000px) {
+  .productCard{
+  width:24%;
+  }
+  .smcatcard{
+    width:24%;
+  }
+}
+
+
+
+
+
+
+
+
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }

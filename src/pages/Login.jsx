@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { update } from '../redux/userSlice';
+
 
 const LogIn = () => {
+  const [name, setName]  = useState("");
+  const dispatch = useDispatch()
+
+  const updateName = (e)=>{
+    e.preventDefault();
+    dispatch(update({name}))
+  }
   return (
     <>
-      <Box
-        sx={{
-          backgroundImage: `url(${'https://images.pexels.com/photos/291762/pexels-photo-291762.jpeg?auto=compress&cs=tinysrgb&w=400'})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          objectFit: 'cover',
-        }}
-      >
+
         <Box
           sx={{
             height: '100vh',
@@ -19,17 +23,27 @@ const LogIn = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            bgcolor: 'rgba(0,0,0,0.5)',
+            bgcolor: 'rgba(255,255,255,0.5)',
           }}
         >
           <Box
             sx={{
-              bgcolor: 'rgba(255,255,255,0.5)',
-              width: '50%',
-              height: '50vh',
-              borderRadius: '10px',
+              bgcolor: '#F9F9F9',
+            opacity:"0.8",
+            width: {md:'65%',xs:"100%"},
+            height: {md:'65vh',xs:"100%"},
+            borderRadius: '10px',
+            dispaly: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            p:"10px",
+            boxShadow:
+              'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px',
+          
             }}
           >
+                    <Typography variant='h4' p={2} sx={{justifyContent:"center",display:"flex"}}>Log In</Typography>
+
             <Box
               sx={{
                 justifyContent: 'center',
@@ -39,14 +53,15 @@ const LogIn = () => {
               }}
             >
               <TextField
-                sx={{ width: '80%', mt: '20px' }}
+                sx={{ width: {sm:'80%',xs:"100%"}, mt: '20px' }}
                 id='outlined-basic'
-                label='Email'
-                type='email'
+                label='UserName'
+                type='username'
                 variant='outlined'
+                onChange={(e)=>setName(e.target.value)}
               />
               <TextField
-                sx={{ width: '80%', mt: '20px' }}
+                sx={{ width: {sm:'80%',xs:"100%"}, mt: '20px' }}
                 id='outlined-password-input'
                 label='Password'
                 type='password'
@@ -59,20 +74,19 @@ const LogIn = () => {
                 bgcolor: 'black',
                 border: '2px solid gray',
                 '&:hover': { bgcolor: 'white', color: 'black' },
-                ml:"10%",
+                ml:{sm:"10%"},
                 mt:"20px",
                 width:"20%",
-                
               }}
+                onClick={updateName}
             >
               Log In
             </Button>
             <Typography sx={{ m: '20px', }}>
-              Don't have Account :<Button>Register Now</Button>
+              Don't have Account :<Link to={"/register"}>Register Now</Link>
             </Typography>
           </Box>
         </Box>
-      </Box>
     </>
   );
 };

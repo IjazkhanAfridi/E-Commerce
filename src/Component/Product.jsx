@@ -1,26 +1,22 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import Products from './Products';
-import { images } from '../dummyData';
-
 const Product = () => {
   return (
     <Box>
-      <Typography p={1} color={'black'} textAlign={'center'}>
-        Products
+      <Typography p={2} variant={'h4'} color={'black'} textAlign={'center'}>
+        <u>PRODUCTS</u>
       </Typography>
       <Box
         sx={{
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'space-around',
-          mt: '5px',
+          mt: '7px',
+          mb: '7px',
         }}
       >
-        {images.map((item) => (
-          <Products item={item} key={item.id} />
-        ))}
-      
+        <Products />
       </Box>
 
       <hr
